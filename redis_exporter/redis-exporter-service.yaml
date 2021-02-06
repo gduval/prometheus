@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: prometheus-redis-exporter
+  name: prod-minder-redis-exporter-prometheus-redis-exporter
+  namespace: monitoring
+spec:
+  clusterIP:
+  ports:
+  - name: redis-exporter
+    port: 9121
+    protocol: TCP
+    targetPort: exporter-port
+  selector:
+    app: prometheus-redis-exporter
+    release: prod-minder-redis-exporter
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

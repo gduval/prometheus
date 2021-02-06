@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: alertmanager
+  namespace: monitoring
+  annotations:
+    volume.beta.kubernetes.io/storage-class: vsan-persistent
+    volume.beta.kubernetes.io/storage-provisioner: kubernetes.io/vsphere-volume
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi

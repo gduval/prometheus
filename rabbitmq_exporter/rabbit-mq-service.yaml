@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: prod-minder-rmq-exporter-prometheus-rabbitmq-exporter
+  namespace: monitoring
+spec:
+  clusterIP: 
+  ports:
+  - name: rabbitmq-exporter
+    port: 9419
+    protocol: TCP
+    targetPort: publish
+  selector:
+    app: prometheus-rabbitmq-exporter
+    release: prod-minder-rmq-exporter
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

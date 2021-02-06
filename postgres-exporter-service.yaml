@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: prometheus-postgres-exporter
+  name: prod-ai-pg-exporter-prometheus-postgres-exporter
+  namespace: monitoring
+spec:
+  clusterIP:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 9187
+  selector:
+    app: prometheus-postgres-exporter
+    release: prod-ai-pg-exporter
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
